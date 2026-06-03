@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Deploy — Formulário de Leads</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f8f7f4;color:#1a1a2e;padding:0 0 60px}
+.header{background:linear-gradient(135deg,#e94560,#c2185b);color:#fff;padding:40px 24px;text-align:center}
+.header h1{font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:8px}
+.header p{font-size:14px;opacity:0.85}
+.container{max-width:800px;margin:0 auto;padding:0 20px}
+.section{background:#fff;border-radius:16px;padding:28px;margin:24px 0;border:1px solid #eee;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+.section h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:6px;color:#1a1a2e}
+.section .subtitle{font-size:13px;color:#888;margin-bottom:20px}
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:600px){.option-grid{grid-template-columns:1fr}}
+.option{border:1.5px solid #e8e8e8;border-radius:12px;padding:20px;text-align:center}
+.option.recommended{border-color:#e94560;background:#fff9fa}
+.badge-rec{display:inline-block;background:#e94560;color:#fff;font-size:11px;padding:3px 10px;border-radius:20px;margin-bottom:10px;font-weight:500}
+.option h3{font-size:17px;font-weight:600;margin-bottom:8px}
+.option p{font-size:12px;color:#666;line-height:1.6;margin-bottom:16px}
+.option img{width:140px;height:140px;border-radius:10px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto}
+.btn-deploy{display:inline-block;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;margin-top:4px}
+.btn-netlify{background:#00ad9f;color:#fff}
+.btn-github{background:#1a1a2e;color:#fff}
+.steps{counter-reset:step}
+.step{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.step-num{min-width:30px;height:30px;background:#e94560;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0;margin-top:2px}
+.step-text strong{display:block;font-size:14px;margin-bottom:3px}
+.step-text span{font-size:13px;color:#555;line-height:1.6}
+code{background:#f0f0f0;padding:2px 7px;border-radius:4px;font-family:monospace;font-size:12px;color:#c2185b}
+.tip{background:#fff9e6;border-left:3px solid #f5a623;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:16px;font-size:13px;color:#555;line-height:1.6}
+.html-preview{background:#1a1a2e;border-radius:12px;padding:20px;margin-top:16px;overflow-x:auto}
+.html-preview pre{color:#a8d8a8;font-size:11px;line-height:1.7;white-space:pre-wrap;word-break:break-all}
+.highlight{color:#f5a623}
+.download-btn{display:block;background:linear-gradient(135deg,#e94560,#c2185b);color:#fff;text-align:center;padding:14px;border-radius:12px;font-family:'DM Serif Display',serif;font-size:18px;text-decoration:none;margin-top:20px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="font-size:36px;margin-bottom:10px">🚀</div>
+  <h1>Deploy do Formulário de Leads</h1>
+  <p>Escolha uma opção abaixo e coloque seu formulário no ar em minutos</p>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <h2>Escolha onde hospedar</h2>
+    <div class="subtitle">Ambas as opções são gratuitas e geram uma URL pública para o QR Code</div>
+
+    <div class="option-grid">
+
+      <div class="option recommended">
+        <span class="badge-rec">⭐ Mais fácil</span>
+        <h3>Netlify Drop</h3>
+        <p>Arraste e solte o arquivo <code>index.html</code> no site. Em 30 segundos você tem a URL.</p>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEICAIAAAAslP2oAAAFEElEQVR4nO3dwa3cNhRA0fwgNbik9JHK0kdKchOTdYCrBQEyj/I/Z2k4Go0yFwREk/z6fD6/Af/1+/QNwI2EAUEYEIQBQRgQhAFBGBCEAUEYEIQBQRgQhAFBGBCEAUEYEP5Y/Q9+/vnXifvY7sc/f+efr97/03WePF1/9TqrTn+vXZ87ZfX7GjEgCAOCMCAIA4IwIAgDgjAgLM9jPDn9nv7J1Pv7KbvmSU7Pt7zl9/DEiAFBGBCEAUEYEIQBQRgQhAFh2zzGk13vlW9bz/BkdR3IrnUju+7/9PzGW34PRgwIwoAgDAjCgCAMCMKAIAwIx+cxbjM1n7Dr+k9uW4/xdkYMCMKAIAwIwoAgDAjCgCAMCN9uHmPKrv2vnq7z3fbXOs2IAUEYEIQBQRgQhAFBGBCEAeH4PMbb35fvWuewate6jl1/f5e3/B6MGBCEAUEYEIQBQRgQhAFBGBC2zWPsen9/m13v+6fmH6bmN97+ezBiQBAGBGFAEAYEYUAQBgRhQPj6fD7T9/C/uu2c6dvmDd6yXuI0IwYEYUAQBgRhQBAGBGFAEAaE5XmM0/sR/arnZE+tT7jtflZNnV9uxIAgDAjCgCAMCMKAIAwIwoCwvK/Urvfiu+Y9Tr+nf/s6h6l5p12m5luMGBCEAUEYEIQBQRgQhAFBGBCW5zF2zVec3k9p6jqr11912/qK2+a1dj0HIwYEYUAQBgRhQBAGBGFAEAaEbesxTju9j9Pp+ZZdn3v6e616uv6u7zU1b2PEgCAMCMKAIAwIwoAgDAjCgDC2HmN1HuC2dQinP/f0Od9Tz/P0PNiu6xsxIAgDgjAgCAOCMCAIA4IwICyf8/3ktvO/d13/ydQ6h9ue823rKJ445xs2EAYEYUAQBgRhQBAGBGFA2LYeY+o999R79NPzCW932z5gq4wYEIQBQRgQhAFBGBCEAUEYEJbnMVa9fV3Bk6n7PP08p+ZhTu+jtcqIAUEYEIQBQRgQhAFBGBCEAWHbvlJPpvYR2uW77af05PQ6nNP3s8qIAUEYEIQBQRgQhAFBGBCEAWF5HuO299mr3rJOY9Xp+7xtHub09zViQBAGBGFAEAYEYUAQBgRhQFjeV2rqXO0pp8/xWLVrv6ldnzs1f+J8DBggDAjCgCAMCMKAIAwIwoBw/HyMJ6fXb5w+z3uX1efwlu+1y9Q+XUYMCMKAIAwIwoAgDAjCgCAMCMvzGLfts3R636qp9+hvWbewatfvx3oMGCAMCMKAIAwIwoAgDAjCgDC2r9Su60+t0/hVz89+8pbzuXcxYkAQBgRhQBAGBGFAEAYEYUA4vh5jytQ6kCdvX5dy+nNve55GDAjCgCAMCMKAIAwIwoAgDAjbzseY+vf0t50zvWr1+rftE3V6/64nzseAAcKAIAwIwoAgDAjCgCAMCMfP+X7LPk67TJ3DfXp+Y+q5Tc2PGTEgCAOCMCAIA4IwIAgDgjAgHJ/HuM13O3di9XNPX+ctz9OIAUEYEIQBQRgQhAFBGBCEAeHbzWM8Of1e/8mu6799v6nT60ZW78eIAUEYEIQBQRgQhAFBGBCEAeH4PMbUvkCnTa1D2HWexqqp/49T8zNGDAjCgCAMCMKAIAwIwoAgDAjb5jGm/t3/qqn9jk6v63iL078T+0rBQcKAIAwIwoAgDAjCgCAMCF+fz2f6HuA6RgwIwoAgDAjCgCAMCMKAIAwIwoAgDAjCgCAMCMKAIAwIwoAgDAj/At1/Ef+ebWCOAAAAAElFTkSuQmCC" alt="QR Code Netlify Drop">
+        <div style="font-size:11px;color:#aaa;margin-bottom:10px">Escaneie para abrir o Netlify Drop</div>
+        <a href="https://app.netlify.com/drop" target="_blank" class="btn-deploy btn-netlify">Abrir Netlify Drop →</a>
+      </div>
+
+      <div class="option">
+        <h3>GitHub Pages</h3>
+        <p>Crie um repositório público, suba o <code>index.html</code> e ative o Pages nas configurações.</p>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoCAIAAABqyz8vAAAEL0lEQVR4nO3dsW3YMBRAwTjIFh4i+4+RITyH0qRlwYAE+ay72pEV64HFB0F+PM/zA2p+nn4B+B/CJUm4JAmXJOGSJFyShEuScEkSLknCJUm4JAmXJOGSJFyShEvSr9l/8Pn5e8d7LPf19Wfq50f/r9FzZn9+1e+d9V2/lxWXJOGSJFyShEuScEkSLknCJWl6jjuyau44a3ZOuWquuXu+O7Lq+ZXvNWLFJUm4JAmXJOGSJFyShEuScElaNscd2T03PaWyz3VW5XtZcUkSLknCJUm4JAmXJOGSJFySts9x32Z2n+7Id50Tr2LFJUm4JAmXJOGSJFyShEuScEl63Rx31fm1q35+9/t8V1ZckoRLknBJEi5JwiVJuCQJl6Ttc9zbzkMY2X1v2e7fu0rle1lxSRIuScIlSbgkCZck4ZIkXJKWzXEr+0Rn56a77xU79XerfK8RKy5JwiVJuCQJlyThkiRckoRL0vQct7Jfc9Zt+2J3z4/rrLgkCZck4ZIkXJKES5JwSRIuSdNz3O8671z1/FP7bivn8q76LlZckoRLknBJEi5JwiVJuCQJl6Rj95ydOq/g1Hx3t7fdl2bFJUm4JAmXJOGSJFyShEuScEnKn4+76rzbkdv23d5m9u+wav5txSVJuCQJlyThkiRckoRLknBJ+nieZ+ofnNrnOrJ7/+upfben5sG79zeb4/JqwiVJuCQJlyThkiRckoRL0vQcd2T3+an1569yav/xKua4vJpwSRIuScIlSbgkCZck4ZK07J6zVW47d3bktn2ru+e7s3Z/RysuScIlSbgkCZck4ZIkXJKES9Ky83FP7Qe9bX/qbfeNzT7/tu81YsUlSbgkCZck4ZIkXJKES5JwSbrufNxTVs0vd+/HXfU+tz3HHJdXEC5JwiVJuCQJlyThkiRckpbtxx05dV/XrN3nD9y273b2Obedv2vFJUm4JAmXJOGSJFyShEuScEmanuPuPmdgt93z1NvOwZ11271oI1ZckoRLknBJEi5JwiVJuCQJl6Tr7jlbZTRf3D13nJ2z3vY+uzlXgVcTLknCJUm4JAmXJOGSJFyStt9zttupcw9OnYM767b90M5V4NWES5JwSRIuScIlSbgkCZekzPm4p+aRu8/NXfX8U/ukT31fKy5JwiVJuCQJlyThkiRckoRL0vY5bsWqc3/r506ses7uv4MVlyThkiRckoRLknBJEi5JwiXJHPefVfd7rZpr3nYewqr3XzXfteKSJFyShEuScEkSLknCJUm4JG2f4942j9zt1Lxz97m8t31HKy5JwiVJuCQJlyThkiRckoRL0rI5buU8gVP3os2ane+emvuemu9acUkSLknCJUm4JAmXJOGSJFySPp7nOf0OMM2KS5JwSRIuScIlSbgkCZck4ZIkXJKES5JwSRIuScIlSbgkCZck4ZL0F1ozYieK06OvAAAAAElFTkSuQmCC" alt="QR Code GitHub">
+        <div style="font-size:11px;color:#aaa;margin-bottom:10px">Escaneie para criar repositório</div>
+        <a href="https://github.com/new" target="_blank" class="btn-deploy btn-github">Criar repositório →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Passo a passo — Netlify Drop</h2>
+    <div class="subtitle">Opção recomendada — sem cadastro, sem configuração</div>
+
+    <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Salve o arquivo do formulário</strong><span>Baixe o <code>index.html</code> que foi gerado para o seu computador ou celular.</span></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Personalize o número do prestador</strong><span>Abra o arquivo em qualquer editor de texto e troque <code>5531999999999</code> pelo seu número real (com DDD, sem espaços ou traços).</span></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Acesse app.netlify.com/drop</strong><span>Arraste o arquivo <code>index.html</code> para a área de drop da página. O Netlify vai gerar automaticamente uma URL como <code>https://amazing-name-123.netlify.app</code></span></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Gere o QR Code com a URL pública</strong><span>Copie a URL gerada e cole em <a href="https://www.qr-code-generator.com" target="_blank" style="color:#e94560">qr-code-generator.com</a> para gerar o QR real para impressão.</span></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Imprima ou compartilhe!</strong><span>Coloque o QR Code em cartões de visita, panfletos ou stories do Instagram. Quem escanear cai direto no formulário.</span></div></div>
+
+    <div class="tip">💡 <strong>Dica:</strong> No Netlify, você pode personalizar a URL em <em>Site settings → Change site name</em> para algo como <code>joao-eletricista.netlify.app</code></div>
+  </div>
+
+  <div class="section">
+    <h2>O que personalizar no HTML</h2>
+    <div class="subtitle">Troque esses dois valores antes de fazer o deploy</div>
+
+    <div class="html-preview">
+      <pre><span style="color:#888">// Linha ~180 do index.html — WhatsApp do prestador:</span>
+const PRESTADOR_WA = <span class="highlight">'5531999999999'</span>; <span style="color:#888">← seu número aqui</span>
+
+<span style="color:#888">// Linha ~185 — e-mail do prestador (opcional):</span>
+const PRESTADOR_EMAIL = <span class="highlight">'prestador@exemplo.com.br'</span>; <span style="color:#888">← seu e-mail</span>
+
+<span style="color:#888">// Título do formulário (linha ~10 aprox):</span>
+&lt;title&gt;<span class="highlight">Solicite seu Orçamento</span>&lt;/title&gt;
+
+<span style="color:#888">// Nome exibido na hero (linha ~70 aprox):</span>
+&lt;h1&gt;<span class="highlight">Solicite seu Orçamento</span>&lt;/h1&gt;</pre>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
